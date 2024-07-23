@@ -15,4 +15,12 @@ class UserController extends Controller
         }
         return view('dataTables');
     }
+    public function test(Request  $request){
+        if ($request->ajax()) {
+            $users = User::select('*');
+            return datatables()->of($users)
+                ->make(true);
+        }
+        return view('dataTables');
+    }
 }
